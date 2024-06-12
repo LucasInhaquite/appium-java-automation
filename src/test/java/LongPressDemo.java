@@ -4,13 +4,13 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class LongPress extends BaseTest{
+public class LongPressDemo extends BaseTest{
 
     @Test
     public void longPressGesture() {
 
         driver.findElement(AppiumBy.accessibilityId("Views")).click();
-        driver.findElement(By.xpath("//android.widget.TextView[@content-desc='Expandable Lists']")).click();
+        driver.findElement(AppiumBy.xpath("//android.widget.TextView[@content-desc='Expandable Lists']")).click();
         driver.findElement(AppiumBy.accessibilityId("1. Custom Adapter")).click();
 
         //Create a WebElement and add the desired element where you want to perform the action
