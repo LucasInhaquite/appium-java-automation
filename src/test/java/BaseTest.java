@@ -1,4 +1,5 @@
 import com.google.common.collect.ImmutableMap;
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
@@ -35,16 +36,31 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
+    @AfterClass
+    public void tearDown(){
+        // Quit Driver and stop the service
+        driver.quit();
+        service.stop();
+    }
+
     public void longPressAction(WebElement element){
         ((JavascriptExecutor) driver).executeScript("mobile: longClickGesture",
                 ImmutableMap.of("elementId" , ((RemoteWebElement) element).getId(),
                         "duration", 2000));
     }
 
-    @AfterClass
-    public void tearDown(){
-        // Quit Driver and stop the service
-        driver.quit();
-        service.stop();
+    public void scrollIntoView(String elementName){
+        driver.findElement(AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\"" + elementName + "\"))"));
+    }
+
+    public void scrollToEndAction(){
+        boolean canScrollMore;
+        do {
+            canScrollMore = (Boolean) ((JavascriptExecutor) driver).executeScript("mobile: scrollGesture", ImmutableMap.of(
+                    "left", 100, "top", 100, "width", 200, "height", 200,
+                    "direction", "down",
+                    "percent", 10.0
+            ));
+        }while (canScrollMore);
     }
 }
