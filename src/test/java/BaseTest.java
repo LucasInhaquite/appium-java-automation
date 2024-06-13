@@ -72,4 +72,12 @@ public class BaseTest {
                         "speed", 1500));
     }
 
+    public void dragAndDropAction(WebElement source, Integer dropX, Integer dropY){
+        ((JavascriptExecutor) driver).executeScript("mobile: dragGesture", ImmutableMap.of(
+                "elementId", ((RemoteWebElement) source).getId(),
+                "endX", dropX,
+                "endY", dropY
+        ));
+    }
+
 }
