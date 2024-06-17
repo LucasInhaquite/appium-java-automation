@@ -30,7 +30,9 @@ public class BaseTest {
         //Appium code -> Appium Server -> Mobile
         UiAutomator2Options options = new UiAutomator2Options();
         options.setDeviceName("Pixel_7_API_30");
-        options.setApp("C:\\Dev\\appium-java-automation\\src\\test\\java\\resources\\ApiDemos-debug.apk");
+//        options.setApp("C:\\Dev\\appium-java-automation\\src\\test\\java\\resources\\ApiDemos-debug.apk");
+        options.setApp("C:\\Dev\\appium-java-automation\\src\\test\\java\\resources\\General-Store.apk");
+        options.setChromedriverExecutable("C:\\Dev\\chromedriver\\chromedriver.exe");
 
         driver = new AndroidDriver(new URI("http://127.0.0.1:4723").toURL(), options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
